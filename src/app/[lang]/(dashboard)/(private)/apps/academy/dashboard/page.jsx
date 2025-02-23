@@ -11,7 +11,8 @@ import AssignmentProgress from '@views/apps/academy/dashboard/AssignmentProgress
 import CourseTable from '@views/apps/academy/dashboard/CourseTable'
 
 // Data Imports
-import { getAcademyData } from '@/app/server/actions'
+import { getAcademyData, getStatisticsData } from '@/app/server/actions'
+import LogisticsStatisticsCard from '@/views/apps/logistics/dashboard/LogisticsStatisticsCard'
 
 /**
  * ! If you need data using an API call, uncomment the below API code, update the `process.env.API_URL` variable in the
@@ -32,9 +33,13 @@ import { getAcademyData } from '@/app/server/actions'
 const AcademyDashboard = async () => {
   // Vars
   const data = await getAcademyData()
+  const statsData = await getStatisticsData()
 
   return (
     <Grid container spacing={6}>
+      <Grid size={{ xs: 12 }}>
+        <LogisticsStatisticsCard data={statsData?.statsHorizontalWithBorder} />
+      </Grid>
       <Grid size={{ xs: 12 }}>
         <WelcomeCard />
       </Grid>
