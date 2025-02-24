@@ -28,18 +28,25 @@ const series = [
 ]
 
 const data1 = [
-  { title: 'UI Design', value: 35, colorClass: 'text-primary' },
-  { title: 'UX Design', value: 20, colorClass: 'text-info' },
-  { title: 'Music', value: 14, colorClass: 'text-success' }
+  { title: 'Weak Encryption', value: 35, colorClass: 'text-primary' },
+  { title: 'Hardcoded Keys', value: 20, colorClass: 'text-info' },
+  { title: 'Deprecated Algorithms', value: 14, colorClass: 'text-success' }
 ]
 
 const data2 = [
-  { title: 'Animation', value: 12, colorClass: 'text-secondary' },
-  { title: 'React', value: 10, colorClass: 'text-error' },
-  { title: 'SEO', value: 9, colorClass: 'text-warning' }
+  { title: 'Insecure Exchange', value: 12, colorClass: 'text-secondary' },
+  { title: 'Plaintext', value: 10, colorClass: 'text-error' },
+  { title: 'Unclear', value: 9, colorClass: 'text-warning' }
 ]
 
-const labels = ['UI Design', 'UX Design', 'Music', 'Animation', 'React', 'SEO']
+const labels = [
+  'Weak Encryption',
+  'Hardcoded Keys',
+  'Deprecated Algorithms',
+  'Insecure Exchange',
+  'Plaintext',
+  'Unclear'
+]
 
 const InterestedTopics = () => {
   // Hooks
@@ -141,10 +148,7 @@ const InterestedTopics = () => {
 
   return (
     <Card>
-      <CardHeader
-        title='Topic you are interested in'
-        action={<OptionMenu options={['Refresh', 'Update', 'Share']} />}
-      />
+      <CardHeader title='Live Scan Progress Bar' action={<OptionMenu options={['Refresh', 'Update', 'Share']} />} />
       <CardContent>
         <Grid container>
           <Grid size={{ xs: 12, sm: 6 }} className='max-sm:mbe-6'>

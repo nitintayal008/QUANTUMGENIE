@@ -112,7 +112,7 @@ const CourseTable = ({ courseData }) => {
         )
       },
       columnHelper.accessor('courseTitle', {
-        header: 'Course Name',
+        header: 'File Name',
         cell: ({ row }) => (
           <div className='flex items-center gap-4'>
             <CustomAvatar variant='rounded' skin='light' color={row.original.color}>
@@ -146,8 +146,17 @@ const CourseTable = ({ courseData }) => {
         ),
         enableSorting: false
       }),
+      columnHelper.accessor('service', {
+        header: 'Service',
+        cell: ({ row }) => (
+          <Typography className='font-medium' color='text.primary'>
+            {row.original.service}
+          </Typography>
+        ),
+        enableSorting: false
+      }),
       columnHelper.accessor('progressValue', {
-        header: 'progress',
+        header: 'COVERAGE',
         sortingFn: (rowA, rowB) => {
           if (
             !Math.floor((rowA.original.completedTasks / rowA.original.totalTasks) * 100) ||
@@ -201,6 +210,7 @@ const CourseTable = ({ courseData }) => {
     []
   )
 
+  console.log('courseData', data, 'columns', columns)
   const table = useReactTable({
     data: data,
     columns,

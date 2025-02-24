@@ -20,7 +20,7 @@ const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexChart
 const data = [
   {
     title: 'Hours Spent',
-    value: '34h',
+    value: '01:27:14',
     color: 'primary',
     icon: (
       <svg xmlns='http://www.w3.org/2000/svg' width='38' height='38' viewBox='0 0 38 38' fill='none'>
@@ -40,7 +40,7 @@ const data = [
     )
   },
   {
-    title: 'Test Results',
+    title: 'Encryption Score (%)',
     value: '82%',
     color: 'info',
     icon: (
@@ -60,7 +60,7 @@ const data = [
     )
   },
   {
-    title: 'Course Completed',
+    title: 'Critical Issues Found',
     value: '14',
     color: 'warning',
     icon: (
@@ -155,11 +155,11 @@ const WelcomeCard = () => {
       <div className='md:is-8/12'>
         <div className='flex items-baseline gap-1 mbe-2'>
           <Typography variant='h5'>Welcome back,</Typography>
-          <Typography variant='h4'>Felecia 👋🏻</Typography>
+          <Typography variant='h4'>Srijan 👋🏻</Typography>
         </div>
         <div className='mbe-4'>
-          <Typography>Your progress this week is Awesome. let&apos;s keep it up</Typography>
-          <Typography>and get a lot of points reward!</Typography>
+          <Typography>Your security insights are ready! Stay ahead of threats by reviewing</Typography>
+          <Typography>the latest scan results and strengthening your defenses.</Typography>
         </div>
         <div className='flex flex-wrap max-md:flex-col justify-between gap-6'>
           {data.map((item, i) => (

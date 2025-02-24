@@ -25,10 +25,11 @@ const UpcomingWebinar = () => {
         </div>
         <div>
           <Typography variant='h5' className='mbe-2'>
-            Upcoming Webinar
+            Upcoming Scan
           </Typography>
           <Typography variant='body2'>
-            Next Generation Frontend Architecture Using Layout Engine And React Native Web.
+            Your next vulnerability scan is scheduled. Ensure all cryptographic systems are secure and compliant before
+            deployment!{' '}
           </Typography>
         </div>
         <div className='flex flex-wrap justify-between gap-4'>
@@ -46,7 +47,7 @@ const UpcomingWebinar = () => {
             </div>
           ))}
         </div>
-        <Button variant='contained'>Join the event</Button>
+        <Button variant='contained'>Schedule A Reminder</Button>
       </CardContent>
     </Card>
   )

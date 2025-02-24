@@ -17,7 +17,7 @@
  */
 const themeConfig = {
   templateName: 'Genie PQC',
-  homePageUrl: '/dashboards/crm',
+  homePageUrl: '/dashboards/academy',
   settingsCookieName: 'vuexy-mui-next-demo-1',
   mode: 'system', // 'system', 'light', 'dark'
   skin: 'default', // 'default', 'bordered'

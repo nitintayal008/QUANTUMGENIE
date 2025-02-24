@@ -11,16 +11,21 @@ import OptionMenu from '@core/components/option-menu'
 
 // Vars
 const data = [
-  { name: 'Jordan Stevenson', profession: 'Business Intelligence', totalCourses: 33, avatar: '/images/avatars/1.png' },
-  { name: 'Bentlee Emblin', profession: 'Digital Marketing', totalCourses: 52, avatar: '/images/avatars/2.png' },
-  { name: 'Benedetto Rossiter', profession: 'UI/UX Design', totalCourses: 12, avatar: '/images/avatars/3.png' },
-  { name: 'Beverlie Krabbe', profession: 'Vue', totalCourses: 8, avatar: '/images/avatars/4.png' }
+  {
+    name: 'Weak RSA/ECC Encryption',
+    profession: 'Business Intelligence',
+    totalCourses: 33,
+    avatar: '/images/avatars/1.png'
+  },
+  { name: 'Hardcoded Secrets', profession: 'Digital Marketing', totalCourses: 52, avatar: '/images/avatars/2.png' },
+  { name: 'Deprecated Algorithms', profession: 'UI/UX Design', totalCourses: 12, avatar: '/images/avatars/3.png' },
+  { name: 'Compliance Violations', profession: 'Vue', totalCourses: 8, avatar: '/images/avatars/4.png' }
 ]
 
 const PopularInstructors = () => {
   return (
     <Card className='bs-full'>
-      <CardHeader title='Popular Instructors' action={<OptionMenu options={['Refresh', 'Update', 'Share']} />} />
+      <CardHeader title='Issues Detected' action={<OptionMenu options={['Refresh', 'Update', 'Share']} />} />
       <Divider />
       <div className='flex justify-between plb-4 pli-6'>
         <Typography className='uppercase'>instructors</Typography>

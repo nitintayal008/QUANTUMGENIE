@@ -9,11 +9,11 @@ const verticalMenuData = dictionary => [
     icon: 'tabler-smart-home',
     children: [
       // This is how you will normally render menu item
-      {
-        label: dictionary['navigation'].crm,
-        icon: 'tabler-circle',
-        href: '/dashboards/crm'
-      },
+      // {
+      //   label: dictionary['navigation'].crm,
+      //   icon: 'tabler-circle',
+      //   href: '/dashboards/crm'
+      // },
       {
         label: dictionary['navigation'].analytics,
         icon: 'tabler-circle',

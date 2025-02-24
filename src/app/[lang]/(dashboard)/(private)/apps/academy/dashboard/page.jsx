@@ -38,10 +38,10 @@ const AcademyDashboard = async () => {
   return (
     <Grid container spacing={6}>
       <Grid size={{ xs: 12 }}>
-        <LogisticsStatisticsCard data={statsData?.statsHorizontalWithBorder} />
+        <WelcomeCard />
       </Grid>
       <Grid size={{ xs: 12 }}>
-        <WelcomeCard />
+        <LogisticsStatisticsCard data={statsData?.statsHorizontalWithBorder} />
       </Grid>
       <Grid size={{ xs: 12, md: 8 }}>
         <InterestedTopics />

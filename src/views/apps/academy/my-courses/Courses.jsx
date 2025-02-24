@@ -130,6 +130,18 @@ const Courses = props => {
                         {item.courseTitle}
                       </Typography>
                       <Typography>{item.desc}</Typography>
+                      <Typography variant='h6'>Regulatory Compliances:</Typography>
+
+                      <div className='flex items-center gap-3'>
+                        <Chip variant='tonal' className='capitalize' label='HIPAA' size='small' color={'success'} />
+                        <Chip variant='tonal' className='capitalize' label='GDPR' size='small' color={'warning'} />
+                      </div>
+                      <Typography variant='h6'>Supported Platforms: </Typography>
+                      <div className='flex items-center gap-3'>
+                        <Chip variant='tonal' className='capitalize' label='Windows' size='small' color={'warning'} />
+                        <Chip variant='tonal' className='capitalize' label='Mac' size='small' color={'success'} />
+                      </div>
+                      <Typography variant='h6'>Last Update: 25 Feb 2021</Typography>
                     </div>
                     <div className='flex flex-col gap-1'>
                       {item.completedTasks === item.totalTasks ? (
