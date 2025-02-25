@@ -100,6 +100,7 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
         <MenuItem href={`/${locale}/apps/ecommerce/products/list`}>{dictionary['navigation'].qgkms}</MenuItem>
         <MenuItem href={`/${locale}/apps/ecommerce/products/add`}>{dictionary['navigation'].addkey}</MenuItem>
         <MenuItem href={`/${locale}/apps/roles`}>{dictionary['navigation'].qgVault}</MenuItem>
+        <MenuItem href={`/${locale}/apps/cipherscan`}>{dictionary['navigation'].cipherscan}</MenuItem>
 
         {/* <MenuItem href={`/${locale}/apps/ecommerce/products/category`}>
                 {dictionary['navigation'].category}
