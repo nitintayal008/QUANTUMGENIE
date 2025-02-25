@@ -180,6 +180,11 @@ const verticalMenuData = dictionary => [
         ]
       },
       {
+        label: dictionary['navigation'].cipherscan,
+        icon: 'tabler-truck',
+        href: '/apps/cipherscan'
+      },
+      {
         label: dictionary['navigation'].email,
         icon: 'tabler-mail',
         href: '/apps/email',
