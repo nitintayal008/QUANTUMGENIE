@@ -19,13 +19,6 @@ const ProductVariants = () => {
   // States
   const [count, setCount] = useState(1)
 
-  const deleteForm = e => {
-    e.preventDefault()
-
-    // @ts-ignore
-    e.target.closest('.repeater-item').remove()
-  }
-
   return (
     <Card>
       <CardHeader title='Connect Your Repository' />
@@ -34,28 +27,31 @@ const ProductVariants = () => {
           {Array.from(Array(count).keys()).map((item, index) => (
             <Grid key={index} size={{ xs: 12 }} className='repeater-item'>
               <Grid container spacing={6}>
-                <Grid size={{ xs: 12, sm: 4 }}>
-                  <CustomTextField select fullWidth label='Options' defaultValue='Size'>
-                    <MenuItem value='Size'>Size</MenuItem>
+                <Grid size={{ xs: 12 }}>
+                  <CustomTextField
+                    select
+                    fullWidth
+                    label='Repository Type'
+                    placeholder='Repository Type'
+                    defaultValue='Size'
+                  >
+                    <MenuItem value='Choose Key Type'>Choose Key Type</MenuItem>
                     <MenuItem value='Color'>Color</MenuItem>
                     <MenuItem value='Weight'>Weight</MenuItem>
                     <MenuItem value='Smell'>Smell</MenuItem>
                   </CustomTextField>
                 </Grid>
-                <Grid size={{ xs: 12, sm: 8 }} alignSelf='end'>
+                <Grid size={{ xs: 12 }}>
                   <div className='flex items-center gap-6'>
-                    <CustomTextField fullWidth placeholder='Enter Variant Value' />
-                    <CustomIconButton onClick={deleteForm} className='min-is-fit'>
-                      <i className='tabler-x' />
-                    </CustomIconButton>
+                    <CustomTextField fullWidth placeholder='Repository URL' />
                   </div>
                 </Grid>
               </Grid>
             </Grid>
           ))}
           <Grid size={{ xs: 12 }}>
-            <Button variant='contained' onClick={() => setCount(count + 1)} startIcon={<i className='tabler-plus' />}>
-              Add Another Option
+            <Button variant='contained' onClick={() => setCount(count + 1)}>
+              Connect
             </Button>
           </Grid>
         </Grid>

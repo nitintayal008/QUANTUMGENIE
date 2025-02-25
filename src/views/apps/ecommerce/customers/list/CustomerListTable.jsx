@@ -147,11 +147,11 @@ const CustomerListTable = ({ customerData }) => {
         )
       }),
       columnHelper.accessor('customerId', {
-        header: 'Customer Id',
+        header: 'Usser Id',
         cell: ({ row }) => <Typography color='text.primary'>#{row.original.customerId}</Typography>
       }),
-      columnHelper.accessor('country', {
-        header: 'Country',
+      columnHelper.accessor('assignedTo', {
+        header: 'Access Level',
         cell: ({ row }) => (
           <div className='flex items-center gap-2'>
             <img src={row.original.countryFlag} height={22} />
@@ -160,11 +160,11 @@ const CustomerListTable = ({ customerData }) => {
         )
       }),
       columnHelper.accessor('order', {
-        header: 'Orders',
+        header: 'Keys Assigned',
         cell: ({ row }) => <Typography>{row.original.order}</Typography>
       }),
       columnHelper.accessor('totalSpent', {
-        header: 'Total Spent',
+        header: 'Last Login',
         cell: ({ row }) => (
           <Typography className='font-medium' color='text.primary'>
             ${row.original.totalSpent.toLocaleString()}

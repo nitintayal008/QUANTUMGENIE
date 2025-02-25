@@ -18,28 +18,28 @@ import CustomAvatar from '@core/components/mui/Avatar'
 // Vars
 const data = [
   {
-    title: 'In-Store Sales',
-    value: '$5,345',
+    title: 'Total Files Scanned',
+    value: '5',
     icon: 'tabler-smart-home',
-    desc: '5k',
+    desc: '5',
     change: 5.7
   },
   {
-    title: 'Website Sales',
-    value: '$74,347',
+    title: 'Files Scanned Per Minute',
+    value: '7',
     icon: 'tabler-device-laptop',
-    desc: '21k',
+    desc: '21',
     change: 12.4
   },
   {
-    title: 'Discount',
-    value: '$14,235',
+    title: 'Time Elapsed',
+    value: '1',
     icon: 'tabler-gift',
-    desc: '6k'
+    desc: '6'
   },
   {
-    title: 'Affiliate',
-    value: '$8,345',
+    title: 'Estimated Time Remaining',
+    value: '8',
     icon: 'tabler-wallet',
     desc: '150',
     change: -3.5

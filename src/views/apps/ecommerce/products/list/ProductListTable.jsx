@@ -135,7 +135,7 @@ const ProductListTable = ({ productData }) => {
         )
       },
       columnHelper.accessor('productName', {
-        header: 'Product',
+        header: 'KEY IDENTIFIER',
         cell: ({ row }) => (
           <div className='flex items-center gap-4'>
             <img src={row.original.image} width={38} height={38} className='rounded bg-actionHover' />
@@ -145,6 +145,17 @@ const ProductListTable = ({ productData }) => {
               </Typography>
               <Typography variant='body2'>{row.original.productBrand}</Typography>
             </div>
+          </div>
+        )
+      }),
+      columnHelper.accessor('algorithim', {
+        header: 'ALGORITHIM',
+        cell: ({ row }) => (
+          <div className='flex items-center gap-4'>
+            <CustomAvatar skin='light' color={productCategoryObj[row.original.category].color} size={30}>
+              <i className={classnames(productCategoryObj[row.original.category].icon, 'text-lg')} />
+            </CustomAvatar>
+            <Typography color='text.primary'>{row.original.category}</Typography>
           </div>
         )
       }),
@@ -159,58 +170,58 @@ const ProductListTable = ({ productData }) => {
           </div>
         )
       }),
-      columnHelper.accessor('stock', {
-        header: 'Stock',
+      columnHelper.accessor('active', {
+        header: 'ACTIVE',
         cell: ({ row }) => <Switch defaultChecked={row.original.stock} />,
         enableSorting: false
       }),
-      columnHelper.accessor('sku', {
-        header: 'SKU',
+      columnHelper.accessor('uuid', {
+        header: 'UUID',
         cell: ({ row }) => <Typography>{row.original.sku}</Typography>
       }),
-      columnHelper.accessor('price', {
-        header: 'Price',
+      columnHelper.accessor('created', {
+        header: 'CREATED ON',
         cell: ({ row }) => <Typography>{row.original.price}</Typography>
       }),
-      columnHelper.accessor('qty', {
-        header: 'QTY',
+      columnHelper.accessor('expiry', {
+        header: 'EXPIRY ON',
         cell: ({ row }) => <Typography>{row.original.qty}</Typography>
-      }),
-      columnHelper.accessor('status', {
-        header: 'Status',
-        cell: ({ row }) => (
-          <Chip
-            label={productStatusObj[row.original.status].title}
-            variant='tonal'
-            color={productStatusObj[row.original.status].color}
-            size='small'
-          />
-        )
-      }),
-      columnHelper.accessor('actions', {
-        header: 'Actions',
-        cell: ({ row }) => (
-          <div className='flex items-center'>
-            <IconButton>
-              <i className='tabler-edit text-textSecondary' />
-            </IconButton>
-            <OptionMenu
-              iconButtonProps={{ size: 'medium' }}
-              iconClassName='text-textSecondary'
-              options={[
-                { text: 'Download', icon: 'tabler-download' },
-                {
-                  text: 'Delete',
-                  icon: 'tabler-trash',
-                  menuItemProps: { onClick: () => setData(data?.filter(product => product.id !== row.original.id)) }
-                },
-                { text: 'Duplicate', icon: 'tabler-copy' }
-              ]}
-            />
-          </div>
-        ),
-        enableSorting: false
       })
+      // columnHelper.accessor('status', {
+      //   header: 'Status',
+      //   cell: ({ row }) => (
+      //     <Chip
+      //       label={productStatusObj[row.original.status].title}
+      //       variant='tonal'
+      //       color={productStatusObj[row.original.status].color}
+      //       size='small'
+      //     />
+      //   )
+      // }),
+      // columnHelper.accessor('actions', {
+      //   header: 'Actions',
+      //   cell: ({ row }) => (
+      //     <div className='flex items-center'>
+      //       <IconButton>
+      //         <i className='tabler-edit text-textSecondary' />
+      //       </IconButton>
+      //       <OptionMenu
+      //         iconButtonProps={{ size: 'medium' }}
+      //         iconClassName='text-textSecondary'
+      //         options={[
+      //           { text: 'Download', icon: 'tabler-download' },
+      //           {
+      //             text: 'Delete',
+      //             icon: 'tabler-trash',
+      //             menuItemProps: { onClick: () => setData(data?.filter(product => product.id !== row.original.id)) }
+      //           },
+      //           { text: 'Duplicate', icon: 'tabler-copy' }
+      //         ]}
+      //       />
+      //     </div>
+      //   ),
+      //   enableSorting: false
+      // })
     ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [data, filteredData]
@@ -255,7 +266,7 @@ const ProductListTable = ({ productData }) => {
           <DebouncedInput
             value={globalFilter ?? ''}
             onChange={value => setGlobalFilter(String(value))}
-            placeholder='Search Product'
+            placeholder='Search Key Identifier'
             className='max-sm:is-full'
           />
           <div className='flex flex-wrap items-center max-sm:flex-col gap-4 max-sm:is-full is-auto'>
@@ -284,7 +295,7 @@ const ProductListTable = ({ productData }) => {
               href={getLocalizedUrl('/apps/ecommerce/products/add', locale)}
               startIcon={<i className='tabler-plus' />}
             >
-              Add Product
+              Add Key
             </Button>
           </div>
         </div>
