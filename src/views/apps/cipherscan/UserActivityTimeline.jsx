@@ -56,9 +56,10 @@ const UserActivityTimeLine = () => {
                 <img height={20} alt='invoice.pdf' src='/images/icons/pdf-document.png' />
                 <Typography className='font-medium'>invoices.pdf</Typography>
               </div>
+              <div style={{ marginTop: '10px' }}></div>
+              <CurrentTimeline />
             </TimelineContent>
           </TimelineItem>
-          <CurrentTimeline />
           <TimelineItem>
             <TimelineSeparator>
               <TimelineDot color='primary' />
@@ -81,9 +82,10 @@ const UserActivityTimeLine = () => {
                 <img height={20} alt='invoice.pdf' src='/images/icons/pdf-document.png' />
                 <Typography className='font-medium'>invoices.pdf</Typography>
               </div>
+              <div style={{ marginTop: '10px' }}></div>
+              <CurrentTimeline />
             </TimelineContent>
           </TimelineItem>
-          <CurrentTimeline />{' '}
           <TimelineItem>
             <TimelineSeparator>
               <TimelineDot color='primary' />
@@ -106,9 +108,10 @@ const UserActivityTimeLine = () => {
                 <img height={20} alt='invoice.pdf' src='/images/icons/pdf-document.png' />
                 <Typography className='font-medium'>invoices.pdf</Typography>
               </div>
+              <div style={{ marginTop: '10px' }}></div>
+              <CurrentTimeline />
             </TimelineContent>
           </TimelineItem>
-          <CurrentTimeline />{' '}
           <TimelineItem>
             <TimelineSeparator>
               <TimelineDot color='primary' />
@@ -131,9 +134,10 @@ const UserActivityTimeLine = () => {
                 <img height={20} alt='invoice.pdf' src='/images/icons/pdf-document.png' />
                 <Typography className='font-medium'>invoices.pdf</Typography>
               </div>
+              <div style={{ marginTop: '10px' }}></div>
+              <CurrentTimeline />
             </TimelineContent>
           </TimelineItem>
-          <CurrentTimeline />
         </Timeline>
       </CardContent>
     </Card>

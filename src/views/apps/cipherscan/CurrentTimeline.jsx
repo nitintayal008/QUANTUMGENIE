@@ -6,7 +6,7 @@ import AlertTitle from '@mui/material/AlertTitle'
 const CurrentTimeline = () => {
   return (
     <Card>
-      <Alert icon={false} severity='warning' onClose={() => {}}>
+      <Alert icon={false} severity='warning'>
         <AlertTitle>Currently Scanning File</AlertTitle>
         src/encryption/encryption.service.ts
       </Alert>
