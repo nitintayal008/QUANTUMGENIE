@@ -46,6 +46,29 @@ const data = [
   }
 ]
 
+const UpperCardJSON = {
+  total_files_scanned: {
+    value: 533,
+    icon: 'tabler-smart-home',
+    change: '+5.7%'
+  },
+  files_scanned_per_minute: {
+    value: 533,
+    icon: 'tabler-device-laptop',
+    change: '+12.7%'
+  },
+  time_elapsed: {
+    value: 533,
+    icon: 'tabler-gift',
+    note: 'Renew requirred in 30 days'
+  },
+  estimated_time_remaining: {
+    value: 895,
+    icon: 'tabler-wallet',
+    change: '+3.7%'
+  }
+}
+
 const ProductCard = () => {
   // Hooks
   const isBelowMdScreen = useMediaQuery(theme => theme.breakpoints.down('md'))

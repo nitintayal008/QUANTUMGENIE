@@ -21,26 +21,6 @@ import CustomAvatar from '@core/components/mui/Avatar'
 const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexCharts'))
 
 // Vars
-const data = [
-  {
-    title: 'New Tickets',
-    subtitle: '142',
-    avatarColor: 'primary',
-    avatarIcon: 'tabler-ticket'
-  },
-  {
-    title: 'Open Tickets',
-    subtitle: '28',
-    avatarColor: 'info',
-    avatarIcon: 'tabler-check'
-  },
-  {
-    title: 'Response Time',
-    subtitle: '1 Day',
-    avatarColor: 'warning',
-    avatarIcon: 'tabler-clock'
-  }
-]
 
 const SupportTracker = () => {
   // Hooks
@@ -166,17 +146,50 @@ const SupportTracker = () => {
     ]
   }
 
+  const sysytemPerfomanceJSON = {
+    title: 'System performance Dashboard',
+    subtext: 'Real-time tracking of support tickets and file scanning activity',
+    support_tracker: {
+      tatal_issue_found: 164,
+      completed_tast_percentage: 85,
+      new_tickets: 142,
+      open_tickets: 28,
+      responsive_time: '1 Day'
+    }
+  }
+
+  const data = [
+    {
+      title: 'New Tickets',
+      open_tickets: '142',
+      avatarColor: 'primary',
+      avatarIcon: 'tabler-ticket'
+    },
+    {
+      title: 'Open Tickets',
+      open_tickets: '28',
+      avatarColor: 'info',
+      avatarIcon: 'tabler-check'
+    },
+    {
+      title: 'Response Time',
+      open_tickets: '1 Day',
+      avatarColor: 'warning',
+      avatarIcon: 'tabler-clock'
+    }
+  ]
+
   return (
     <Card>
       <CardHeader
-        title='Support Tracker'
-        subheader='Last 7 Days'
+        title={sysytemPerfomanceJSON.title}
+        subheader={sysytemPerfomanceJSON.subtext}
         action={<OptionMenu options={['Refresh', 'Edit', 'Share']} />}
       />
       <CardContent className='flex flex-col sm:flex-row items-center justify-between gap-7'>
         <div className='flex flex-col gap-6 is-full sm:is-[unset]'>
           <div className='flex flex-col'>
-            <Typography variant='h2'>164</Typography>
+            <Typography variant='h2'>{sysytemPerfomanceJSON.support_tracker.tatal_issue_found}</Typography>
             <Typography>Total Tickets</Typography>
           </div>
           <div className='flex flex-col gap-4 is-full'>
@@ -189,13 +202,19 @@ const SupportTracker = () => {
                   <Typography className='font-medium' color='text.primary'>
                     {item.title}
                   </Typography>
-                  <Typography variant='body2'>{item.subtitle}</Typography>
+                  <Typography variant='body2'>{item.open_tickets}</Typography>
                 </div>
               </div>
             ))}
           </div>
         </div>
-        <AppReactApexCharts type='radialBar' height={350} width='100%' series={[85]} options={options} />
+        <AppReactApexCharts
+          type='radialBar'
+          height={350}
+          width='100%'
+          series={[sysytemPerfomanceJSON.support_tracker.completed_tast_percentage]}
+          options={options}
+        />
       </CardContent>
     </Card>
   )
