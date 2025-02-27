@@ -15,6 +15,7 @@ import TimelineConnector from '@mui/lab/TimelineConnector'
 import MuiTimeline from '@mui/lab/Timeline'
 
 import CurrentTimeline from './CurrentTimeline'
+import { useMqtt } from '@/hooks/useMqtt'
 
 // Styled Timeline component
 const Timeline = styled(MuiTimeline)({
@@ -29,115 +30,44 @@ const Timeline = styled(MuiTimeline)({
 })
 
 const UserActivityTimeLine = () => {
+  const { messages } = useMqtt()
+  console.log('Nitin Niitn UserActivityTimeLine:', messages)
+
   return (
     <Card>
       <CardHeader title='' />
       <CardContent>
         <Timeline>
-          <TimelineItem>
-            <TimelineSeparator>
-              <TimelineDot color='primary' />
-              <TimelineConnector />
-            </TimelineSeparator>
-            <TimelineContent>
-              <div className='flex flex-wrap items-center justify-between gap-x-2 mbe-2.5'>
-                <Typography className='font-medium' color='text.primary'>
-                  src/encryption/encryption.service.ts
-                </Typography>
-                <Typography variant='caption' color='text.disabled'>
-                  12 min ago
-                </Typography>
-              </div>
-              <Typography className='mbe-2'>Use of RSA-1024 in line 56</Typography>
-              <Typography className='mbe-2'>
-                {"this.encryptionKey = this.configService.get<string>('ENCRYPTION_KEY', '');"}
-              </Typography>
-              <div className='flex items-center gap-2.5 is-fit bg-actionHover rounded plb-[5px] pli-2.5'>
-                <img height={20} alt='invoice.pdf' src='/images/icons/pdf-document.png' />
-                <Typography className='font-medium'>invoices.pdf</Typography>
-              </div>
-              <div style={{ marginTop: '10px' }}></div>
-              <CurrentTimeline />
-            </TimelineContent>
-          </TimelineItem>
-          <TimelineItem>
-            <TimelineSeparator>
-              <TimelineDot color='primary' />
-              <TimelineConnector />
-            </TimelineSeparator>
-            <TimelineContent>
-              <div className='flex flex-wrap items-center justify-between gap-x-2 mbe-2.5'>
-                <Typography className='font-medium' color='text.primary'>
-                  src/encryption/encryption.service.ts
-                </Typography>
-                <Typography variant='caption' color='text.disabled'>
-                  12 min ago
-                </Typography>
-              </div>
-              <Typography className='mbe-2'>Use of RSA-1024 in line 56</Typography>
-              <Typography className='mbe-2'>
-                {"this.encryptionKey = this.configService.get<string>('ENCRYPTION_KEY', '');"}
-              </Typography>
-              <div className='flex items-center gap-2.5 is-fit bg-actionHover rounded plb-[5px] pli-2.5'>
-                <img height={20} alt='invoice.pdf' src='/images/icons/pdf-document.png' />
-                <Typography className='font-medium'>invoices.pdf</Typography>
-              </div>
-              <div style={{ marginTop: '10px' }}></div>
-              <CurrentTimeline />
-            </TimelineContent>
-          </TimelineItem>
-          <TimelineItem>
-            <TimelineSeparator>
-              <TimelineDot color='primary' />
-              <TimelineConnector />
-            </TimelineSeparator>
-            <TimelineContent>
-              <div className='flex flex-wrap items-center justify-between gap-x-2 mbe-2.5'>
-                <Typography className='font-medium' color='text.primary'>
-                  src/encryption/encryption.service.ts
-                </Typography>
-                <Typography variant='caption' color='text.disabled'>
-                  12 min ago
-                </Typography>
-              </div>
-              <Typography className='mbe-2'>Use of RSA-1024 in line 56</Typography>
-              <Typography className='mbe-2'>
-                {"this.encryptionKey = this.configService.get<string>('ENCRYPTION_KEY', '');"}
-              </Typography>
-              <div className='flex items-center gap-2.5 is-fit bg-actionHover rounded plb-[5px] pli-2.5'>
-                <img height={20} alt='invoice.pdf' src='/images/icons/pdf-document.png' />
-                <Typography className='font-medium'>invoices.pdf</Typography>
-              </div>
-              <div style={{ marginTop: '10px' }}></div>
-              <CurrentTimeline />
-            </TimelineContent>
-          </TimelineItem>
-          <TimelineItem>
-            <TimelineSeparator>
-              <TimelineDot color='primary' />
-              <TimelineConnector />
-            </TimelineSeparator>
-            <TimelineContent>
-              <div className='flex flex-wrap items-center justify-between gap-x-2 mbe-2.5'>
-                <Typography className='font-medium' color='text.primary'>
-                  src/encryption/encryption.service.ts
-                </Typography>
-                <Typography variant='caption' color='text.disabled'>
-                  12 min ago
-                </Typography>
-              </div>
-              <Typography className='mbe-2'>Use of RSA-1024 in line 56</Typography>
-              <Typography className='mbe-2'>
-                {"this.encryptionKey = this.configService.get<string>('ENCRYPTION_KEY', '');"}
-              </Typography>
-              <div className='flex items-center gap-2.5 is-fit bg-actionHover rounded plb-[5px] pli-2.5'>
-                <img height={20} alt='invoice.pdf' src='/images/icons/pdf-document.png' />
-                <Typography className='font-medium'>invoices.pdf</Typography>
-              </div>
-              <div style={{ marginTop: '10px' }}></div>
-              <CurrentTimeline />
-            </TimelineContent>
-          </TimelineItem>
+          {messages.map(item => {
+            return (
+              <TimelineItem>
+                <TimelineSeparator>
+                  <TimelineDot color='primary' />
+                  <TimelineConnector />
+                </TimelineSeparator>
+                <TimelineContent>
+                  <div className='flex flex-wrap items-center justify-between gap-x-2 mbe-2.5'>
+                    <Typography className='font-medium' color='text.primary'>
+                      {item.filename}
+                    </Typography>
+                    <Typography variant='caption' color='text.disabled'>
+                      12 min ago
+                    </Typography>
+                  </div>
+                  <Typography className='mbe-2'>
+                    {item.description} in line {item.lineNumber}
+                  </Typography>
+                  <Typography className='mbe-2'>{item.codeSnippet}</Typography>
+                  {/* <div className='flex items-center gap-2.5 is-fit bg-actionHover rounded plb-[5px] pli-2.5'>
+                    <img height={20} alt='invoice.pdf' src='/images/icons/pdf-document.png' />
+                    <Typography className='font-medium'>invoices.pdf</Typography>
+                  </div> */}
+                  <div style={{ marginTop: '10px' }}></div>
+                  <CurrentTimeline title={item.recommendedFix.title} body={item.recommendedFix.body} />
+                </TimelineContent>
+              </TimelineItem>
+            )
+          })}
         </Timeline>
       </CardContent>
     </Card>
