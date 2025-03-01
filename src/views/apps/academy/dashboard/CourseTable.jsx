@@ -210,7 +210,7 @@ const CourseTable = ({ courseData }) => {
     []
   )
 
-  console.log('courseData', data, 'columns', columns)
+  // console.log('courseData', data, 'columns', columns)
   const table = useReactTable({
     data: data,
     columns,

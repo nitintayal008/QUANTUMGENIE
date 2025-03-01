@@ -42,9 +42,6 @@ const eCommerceProductsList = async () => {
             <ProductVariants />
           </Grid>
           <Grid size={{ xs: 12 }}>
-            <CurrentTimeline />
-          </Grid>
-          <Grid size={{ xs: 12 }}>
             <SupportTracker />
           </Grid>
         </Grid>

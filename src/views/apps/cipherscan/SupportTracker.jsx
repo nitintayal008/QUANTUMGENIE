@@ -16,30 +16,38 @@ import classnames from 'classnames'
 // Components Imports
 import OptionMenu from '@core/components/option-menu'
 import CustomAvatar from '@core/components/mui/Avatar'
+import { useMqtt } from '@/hooks/useMqtt'
+import CurrentTimeline from './CurrentTimeline'
 
 // Styled Component Imports
 const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexCharts'))
 
-// Vars
-
 const SupportTracker = () => {
   // Hooks
   const theme = useTheme()
+  const { progressMessages } = useMqtt()
+  console.log('gbfprogressMessages', progressMessages)
 
-  // Vars
-  const disabledText = 'var(--mui-palette-text-disabled)'
+  // Extracting data from progressMessages
+  const sysytemPerfomanceJSON = progressMessages[0] ?? {
+    title: 'System Performance Dashboard',
+    subtext: 'Real-time tracking of support tickets and file scanning activity',
+    support_tracker: {
+      total_issues_found: 0, // Corrected key
+      completed_task_percentage: 0, // Corrected key
+      new_tickets: 0,
+      open_tickets: 0,
+      response_time: 'N/A'
+    }
+  }
 
   const options = {
     stroke: { dashArray: 10 },
     labels: ['Completed Task'],
     colors: ['var(--mui-palette-primary-main)'],
     states: {
-      hover: {
-        filter: { type: 'none' }
-      },
-      active: {
-        filter: { type: 'none' }
-      }
+      hover: { filter: { type: 'none' } },
+      active: { filter: { type: 'none' } }
     },
     fill: {
       type: 'gradient',
@@ -62,7 +70,7 @@ const SupportTracker = () => {
         dataLabels: {
           name: {
             offsetY: -24,
-            color: disabledText,
+            color: 'var(--mui-palette-text-disabled)',
             fontFamily: theme.typography.fontFamily,
             fontSize: theme.typography.body2.fontSize
           },
@@ -76,147 +84,72 @@ const SupportTracker = () => {
           }
         }
       }
-    },
-    grid: {
-      padding: {
-        top: -18,
-        left: 0,
-        right: 0,
-        bottom: 14
-      }
-    },
-    responsive: [
-      {
-        breakpoint: 1380,
-        options: {
-          grid: {
-            padding: {
-              top: 8,
-              left: 12
-            }
-          }
-        }
-      },
-      {
-        breakpoint: 1280,
-        options: {
-          chart: {
-            height: 325
-          },
-          grid: {
-            padding: {
-              top: 12,
-              left: 12
-            }
-          }
-        }
-      },
-      {
-        breakpoint: 1201,
-        options: {
-          chart: {
-            height: 362
-          }
-        }
-      },
-      {
-        breakpoint: 1135,
-        options: {
-          chart: {
-            height: 350
-          }
-        }
-      },
-      {
-        breakpoint: 980,
-        options: {
-          chart: {
-            height: 300
-          }
-        }
-      },
-      {
-        breakpoint: 900,
-        options: {
-          chart: {
-            height: 350
-          }
-        }
-      }
-    ]
-  }
-
-  const sysytemPerfomanceJSON = {
-    title: 'System performance Dashboard',
-    subtext: 'Real-time tracking of support tickets and file scanning activity',
-    support_tracker: {
-      tatal_issue_found: 164,
-      completed_tast_percentage: 85,
-      new_tickets: 142,
-      open_tickets: 28,
-      responsive_time: '1 Day'
     }
   }
 
   const data = [
     {
       title: 'New Tickets',
-      open_tickets: '142',
+      open_tickets: sysytemPerfomanceJSON?.support_tracker?.new_tickets ?? 'N/A',
       avatarColor: 'primary',
       avatarIcon: 'tabler-ticket'
     },
     {
       title: 'Open Tickets',
-      open_tickets: '28',
+      open_tickets: sysytemPerfomanceJSON?.support_tracker?.open_tickets ?? 'N/A',
       avatarColor: 'info',
       avatarIcon: 'tabler-check'
     },
     {
       title: 'Response Time',
-      open_tickets: '1 Day',
+      open_tickets: sysytemPerfomanceJSON?.support_tracker?.response_time ?? 'N/A',
       avatarColor: 'warning',
       avatarIcon: 'tabler-clock'
     }
   ]
 
   return (
-    <Card>
-      <CardHeader
-        title={sysytemPerfomanceJSON.title}
-        subheader={sysytemPerfomanceJSON.subtext}
-        action={<OptionMenu options={['Refresh', 'Edit', 'Share']} />}
-      />
-      <CardContent className='flex flex-col sm:flex-row items-center justify-between gap-7'>
-        <div className='flex flex-col gap-6 is-full sm:is-[unset]'>
-          <div className='flex flex-col'>
-            <Typography variant='h2'>{sysytemPerfomanceJSON.support_tracker.tatal_issue_found}</Typography>
-            <Typography>Total Tickets</Typography>
-          </div>
-          <div className='flex flex-col gap-4 is-full'>
-            {data.map((item, index) => (
-              <div key={index} className='flex items-center gap-4'>
-                <CustomAvatar skin='light' variant='rounded' color={item.avatarColor} size={34}>
-                  <i className={classnames(item.avatarIcon, 'text-[22px]')} />
-                </CustomAvatar>
-                <div className='flex flex-col'>
-                  <Typography className='font-medium' color='text.primary'>
-                    {item.title}
-                  </Typography>
-                  <Typography variant='body2'>{item.open_tickets}</Typography>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <AppReactApexCharts
-          type='radialBar'
-          height={350}
-          width='100%'
-          series={[sysytemPerfomanceJSON.support_tracker.completed_tast_percentage]}
-          options={options}
+    <>
+      <CurrentTimeline title={sysytemPerfomanceJSON.title} body={sysytemPerfomanceJSON.subtext} />
+      <div style={{ paddingBottom: '15px' }}></div>
+      <Card>
+        <CardHeader
+          title='Support Tracker'
+          subheader='Last 7 days'
+          action={<OptionMenu options={['Refresh', 'Edit', 'Share']} />}
         />
-      </CardContent>
-    </Card>
+        <CardContent className='flex flex-col sm:flex-row items-center justify-between gap-7'>
+          <div className='flex flex-col gap-6 is-full sm:is-[unset]'>
+            <div className='flex flex-col'>
+              <Typography variant='h2'>{sysytemPerfomanceJSON?.support_tracker?.total_issues_found ?? 0}</Typography>
+              <Typography>Total Tickets</Typography>
+            </div>
+            <div className='flex flex-col gap-4 is-full'>
+              {data.map((item, index) => (
+                <div key={index} className='flex items-center gap-4'>
+                  <CustomAvatar skin='light' variant='rounded' color={item.avatarColor} size={34}>
+                    <i className={classnames(item.avatarIcon, 'text-[22px]')} />
+                  </CustomAvatar>
+                  <div className='flex flex-col'>
+                    <Typography className='font-medium' color='text.primary'>
+                      {item.title}
+                    </Typography>
+                    <Typography variant='body2'>{item.open_tickets}</Typography>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <AppReactApexCharts
+            type='radialBar'
+            height={350}
+            width='100%'
+            series={[sysytemPerfomanceJSON?.support_tracker?.completed_task_percentage ?? 0]}
+            options={options}
+          />
+        </CardContent>
+      </Card>
+    </>
   )
 }
 

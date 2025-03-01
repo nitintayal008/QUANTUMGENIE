@@ -16,8 +16,10 @@ import MuiTimeline from '@mui/lab/Timeline'
 
 import CurrentTimeline from './CurrentTimeline'
 import { useMqtt } from '@/hooks/useMqtt'
+import { Box } from '@mui/material'
 
 // Styled Timeline component
+
 const Timeline = styled(MuiTimeline)({
   paddingLeft: 0,
   paddingRight: 0,
@@ -30,45 +32,56 @@ const Timeline = styled(MuiTimeline)({
 })
 
 const UserActivityTimeLine = () => {
-  const { messages } = useMqtt()
-  console.log('Nitin Niitn UserActivityTimeLine:', messages)
+  const { timelineMessage } = useMqtt()
+  console.log('Nitin Niitn UserActivityTimeLine:', timelineMessage)
 
   return (
     <Card>
       <CardHeader title='' />
       <CardContent>
-        <Timeline>
-          {messages.map(item => {
-            return (
-              <TimelineItem>
-                <TimelineSeparator>
-                  <TimelineDot color='primary' />
-                  <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent>
-                  <div className='flex flex-wrap items-center justify-between gap-x-2 mbe-2.5'>
-                    <Typography className='font-medium' color='text.primary'>
-                      {item.filename}
-                    </Typography>
-                    <Typography variant='caption' color='text.disabled'>
-                      12 min ago
-                    </Typography>
-                  </div>
-                  <Typography className='mbe-2'>
-                    {item.description} in line {item.lineNumber}
-                  </Typography>
-                  <Typography className='mbe-2'>{item.codeSnippet}</Typography>
-                  {/* <div className='flex items-center gap-2.5 is-fit bg-actionHover rounded plb-[5px] pli-2.5'>
-                    <img height={20} alt='invoice.pdf' src='/images/icons/pdf-document.png' />
-                    <Typography className='font-medium'>invoices.pdf</Typography>
-                  </div> */}
-                  <div style={{ marginTop: '10px' }}></div>
-                  <CurrentTimeline title={item.recommendedFix.title} body={item.recommendedFix.body} />
-                </TimelineContent>
-              </TimelineItem>
-            )
-          })}
-        </Timeline>
+        {/* Scrollable Container */}
+        <Box
+          sx={{
+            maxHeight: timelineMessage?.length > 2 ? '715px' : 'auto',
+            overflowY: timelineMessage?.length > 2 ? 'auto' : 'visible',
+            paddingRight: '8px' // Optional: Prevents scrollbar from overlapping content
+          }}
+        >
+          <Timeline>
+            {timelineMessage &&
+              timelineMessage.map((item, index) => (
+                <TimelineItem key={index}>
+                  <TimelineSeparator>
+                    <TimelineDot color='primary' />
+                    <TimelineConnector />
+                  </TimelineSeparator>
+                  <TimelineContent>
+                    <div className='flex flex-wrap items-center justify-between gap-x-2 mbe-2.5'>
+                      <Typography className='font-medium' color='text.primary'>
+                        {item.filename}
+                      </Typography>
+                      <Typography variant='caption' color='text.disabled'>
+                        12 min ago
+                      </Typography>
+                    </div>
+                    <div style={{ display: 'flex' }}>
+                      <Typography className='mbe-2'>
+                        {item.description} in line {item.lineNumber}
+                      </Typography>
+                      <Typography variant='caption' color='text.disabled'>
+                        <div className='flex items-center gap-2.5 is-fit bg-actionHover rounded plb-[5px] pli-2.5'>
+                          <Typography className='font-medium'>low </Typography>
+                        </div>
+                      </Typography>
+                    </div>
+                    <Typography className='mbe-2'>{item.codeSnippet}</Typography>
+                    <div style={{ marginTop: '10px' }}></div>
+                    <CurrentTimeline title={item.recommendedFix.title} body={item.recommendedFix.body} />
+                  </TimelineContent>
+                </TimelineItem>
+              ))}
+          </Timeline>
+        </Box>
       </CardContent>
     </Card>
   )
